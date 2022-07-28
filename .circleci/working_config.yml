@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  snyk: snyk/snyk@1.2.3
+  snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
   docker: circleci/docker@1.5.0
@@ -34,7 +34,7 @@ jobs:
       - snyk/scan:
           fail-on-issues: false
           monitor-on-build: false
-  build_docker_image:
+            build_docker_image:
     machine:
       image: ubuntu-2004:202101-01
     resource_class: arm.medium
@@ -47,7 +47,7 @@ jobs:
       - docker/push:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 0.1.<< pipeline.number >>
-  deploy_aws_ecs:
+            deploy_aws_ecs:
     machine:
       image: ubuntu-2004:202101-01
     resource_class: arm.medium
